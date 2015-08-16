@@ -33,7 +33,7 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        app.receivedEvent('deviceready');
+        //app.receivedEvent('deviceready');
 		if(PushbotsPlugin.isiOS()){
 			PushbotsPlugin.initializeiOS("55d02e55177959ce728b457d");
 		}
@@ -46,11 +46,6 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {	
-		function myMsgClickHandler(msg){
-			console.log("Clicked On notification" + JSON.stringify(msg));
-			alert(JSON.stringify(msg));
-		}
-		PushbotsPlugin.onNotificationClick(myMsgClickHandler);
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
@@ -83,8 +78,9 @@ var app = {
     
     onError: function(error){
         alert("the code is " + error.code + ". \n" + "message: " + error.message);
-    },
+    }
 };
+app.initialize();
 // notif event
 (function($){
 $(document)
