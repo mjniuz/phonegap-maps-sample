@@ -59,7 +59,6 @@ var app = {
     },
 	msgHandler: function (msg){
 			console.log("Clicked On notification" + JSON.stringify(msg));
-			alert(JSON.stringify(msg));
 	},
 	onSuccess: function(position){
         var longitude = position.coords.longitude;
