@@ -33,15 +33,16 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
+		navigator.geolocation.getCurrentPosition(app.onSuccess, app.onError);		
         app.receivedEvent('deviceready');
 		if(PushbotsPlugin.isiOS()){
 			PushbotsPlugin.initializeiOS("55d02e55177959ce728b457d");
 		}
 		if(PushbotsPlugin.isAndroid()){
 			PushbotsPlugin.initializeAndroid("55d02e55177959ce728b457d", "766513874967");
+			PushbotsPlugin.onNotificationClick(app.msgHandler);
 		}
-		
-		navigator.geolocation.getCurrentPosition(app.onSuccess, app.onError);				
+				
 		
     },
     // Update DOM on a Received Event
@@ -54,14 +55,12 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
-		
-		function myMsgClickHandler(msg){
+		PushbotsPlugin.onNotificationClick(app.msgHandler);
+    },
+	msgHandler: function (msg){
 			console.log("Clicked On notification" + JSON.stringify(msg));
 			alert(JSON.stringify(msg));
-		}
-		PushbotsPlugin.onNotificationClick(myMsgClickHandler);
-    },
-	
+	},
 	onSuccess: function(position){
         var longitude = position.coords.longitude;
         var latitude = position.coords.latitude;
