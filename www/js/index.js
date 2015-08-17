@@ -32,8 +32,7 @@ var app = {
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
-		navigator.geolocation.getCurrentPosition(app.onSuccess, app.onError);		
+    onDeviceReady: function() {	
         app.receivedEvent('deviceready');
 		if(PushbotsPlugin.isiOS()){
 			PushbotsPlugin.initializeiOS("55d02e55177959ce728b457d");
@@ -59,28 +58,7 @@ var app = {
     },
 	msgHandler: function (msg){
 			console.log("Clicked On notification" + JSON.stringify(msg));
-	},
-	onSuccess: function(position){
-        var longitude = position.coords.longitude;
-        var latitude = position.coords.latitude;
-        var latLong = new google.maps.LatLng(latitude, longitude);
-
-        var mapOptions = {
-            center: latLong,
-            zoom: 13,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-
-        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-	
-        var marker = new google.maps.Marker({
-              position: latLong,
-              map: map,
-              title: 'my location'
-          });
-		alert('Sukses maps loaded');
-    },
-    
+	},    
     onError: function(error){
         alert("the code is " + error.code + ". \n" + "message: " + error.message);
     }
