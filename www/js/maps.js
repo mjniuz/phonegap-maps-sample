@@ -3,19 +3,23 @@ $(document).ready(function(){
 	var optn = {
 			enableHighAccuracy: true,
 			timeout: Infinity,
-			maximumAge: 30000	
+			maximumAge: 0	
 		};
 	if( navigator.geolocation )
 	 navigator.geolocation.watchPosition(success, fail, optn);
 	else
 	 $("p").html("HTML5 Not Supported");
 $("button").click(function(){
- 
-	if(watchID)
+	
+	if(watchID){
+	alert('Klik Button OK');
 	 navigator.geolocation.clearWatch(watchID);
  
 	watchID = null;
 	return false;
+	}else{
+		alert('False');
+	}
 });
  
 });
