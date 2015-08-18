@@ -67,6 +67,7 @@
 	<gap:plugin name="nl.x-services.plugins.socialsharing" version="4.3.8" />
 	<gap:plugin name="com.ionic.keyboard" version="1.0.3" />
 	<gap:plugin name="fr.louisbl.cordova.gpslocation" version="0.1.0" />
+	<gap:plugin name="com.plugins.shortcut" version="0.1.1" />
 
     <!-- Third party plugins -->
     <!-- A list of available plugins are available at https://build.phonegap.com/plugins -->
